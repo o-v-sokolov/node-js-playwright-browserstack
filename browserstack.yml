@@ -37,7 +37,10 @@ platforms:
 browserstackLocal: true
 buildName: ANG e2e
 buildIdentifier: ${BUILD_NUMBER}
-projectName: ANG project https://www.autoglassnow.com
+projectName: ANG project - https://www.autoglassnow.com
 testObservability: true
 debug: true
+console: verbose
 consoleLogs: info
+networkLogs: true
+telemetryLogs: true

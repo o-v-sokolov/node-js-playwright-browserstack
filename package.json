@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tests": "npx browserstack-node-sdk playwright test --config=./playwright.config.js",
+    "tests": "npx browserstack-node-sdk playwright test --config=./playwright.config.ts",
     "local-tests": "npx browserstack-node-sdk playwright test --config=./playwright.local.config.js",
-    "postinstall": "npm update browserstack-node-sdk"
+    "postinstall": "npm update browserstack-node-sdk",
+    "local": "npx playwright test --config=./playwright.config.ts"
   },
   "keywords": [],
   "author": "Oleksandr Sokolov",
@@ -14,5 +15,10 @@
   "devDependencies": {
     "@playwright/test": "latest",
     "browserstack-node-sdk": "^1.34.1"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "dotenv": "^16.4.5",
+    "log4js": "^6.9.1"
   }
 }

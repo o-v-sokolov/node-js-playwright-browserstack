@@ -1,5 +1,6 @@
 // This is a sample config for what users might be running locally
 const config = {
+  retries: 1,
   testDir: './tests',
   testMatch: '**/ang_test.js',
 
