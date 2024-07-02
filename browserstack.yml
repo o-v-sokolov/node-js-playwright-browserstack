@@ -35,9 +35,9 @@ platforms:
     deviceOrientation: portrait
 
 browserstackLocal: true
-buildName: meineke e2e
+buildName: ANG e2e
 buildIdentifier: ${BUILD_NUMBER}
-projectName: Meineke project
+projectName: ANG project https://www.autoglassnow.com
 testObservability: true
 debug: true
 consoleLogs: info

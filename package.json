@@ -9,7 +9,7 @@
     "postinstall": "npm update browserstack-node-sdk"
   },
   "keywords": [],
-  "author": "",
+  "author": "Oleksandr Sokolov",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "latest",
