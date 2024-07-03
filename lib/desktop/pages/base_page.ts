@@ -58,4 +58,29 @@ export class BasePage extends Base {
 		this.logger.info(`Wait for ${state} state on page`)
 		await this.page.waitForLoadState(state, { timeout })
 	}
+
+	private hasComponentIsOkMethod(obj: unknown): obj is { isOk(): Promise<boolean> } {
+		return obj !== null && typeof obj === 'object' && 'isOk' in obj && typeof obj.isOk === 'function'
+	}
+
+	private componentIsCheckable(obj: unknown): obj is { isCheckable: boolean } {
+		return obj !== null && typeof obj === 'object' && 'isCheckable' in obj && obj.isCheckable === true
+	}
+
+	async isOk(): Promise<boolean> {
+		this.logger.info('Check that page is OK')
+
+		for (const component in this) {
+			const property = this[component]
+			if (this.hasComponentIsOkMethod(property) && this.componentIsCheckable(property)) {
+				if (!(await property.isOk())) {
+					this.logger.error('Page is NOT OK')
+					return false
+				}
+			}
+		}
+
+		await this.page.mouse.click(1, 1)
+		return true
+	}
 }
