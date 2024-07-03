@@ -8,6 +8,7 @@ export class HomePage extends BaseDesktopPage {
 	}
 
 	async isOk() {
+		if (!(await super.isOk())) return false
 		this.logger.info('Is OK')
 		return true
 	}
