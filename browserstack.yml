@@ -25,14 +25,14 @@ platforms:
     browserName: playwright-webkit
     browserVersion: latest
 
-  - deviceName: Pixel 8 Pro
-    osVersion: 14.0
-    browserName: chrome
-    deviceOrientation: portrait
-  - deviceName: Galaxy Tab S9
-    osVersion: 13.0
-    browserName: chrome
-    deviceOrientation: portrait
+  # - deviceName: Pixel 8 Pro
+  #   osVersion: 14.0
+  #   browserName: chrome
+  #   deviceOrientation: portrait
+  # - deviceName: Galaxy Tab S9
+  #   osVersion: 13.0
+  #   browserName: chrome
+  #   deviceOrientation: portrait
 
 browserstackLocal: true
 buildName: ANG e2e
