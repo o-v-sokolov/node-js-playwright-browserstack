@@ -1,9 +1,11 @@
 import { Locator } from '@playwright/test'
 import { Label } from '@lib//elements/label'
-import { Button } from '@lib//elements/button'
+import { Button } from '@lib/elements/button'
 import { BaseComponent } from '@lib//elements/base_component'
+import { Menu } from '@lib/desktop/components/menu'
 
 export class Header extends BaseComponent {
+	menu: Menu
 	locations: Button
 	careers: Button
 	agentPortal: Button
@@ -20,6 +22,7 @@ export class Header extends BaseComponent {
 		this.agentPortal = new Button('Agent Portal link', this.container.locator('.css-owi57n >> text="Agent Portal"'), true)
 
 		this.logo = new Label('Main Logo', this.container.locator('.active-link .gatsby-image-wrapper picture > img'), true)
+		this.menu = new Menu(this.container.locator('.css-1nkpo29'))
 		this.getQuote = new Button('GET A QUOTE', this.container.locator('.css-1o7rntn .css-z8rrs9'), true)
 		this.tel = new Button('Tel', this.container.locator('.css-2b4cxw'), true)
 		this.quote = new Label('Quote', this.container.locator('.css-hqtv41'), true)
