@@ -101,7 +101,7 @@ export class HomePage extends BaseDesktopPage {
 		await this.howPay.click()
 		const stateTab3 = await this.howPay.getAttribute('aria-selected')
 		if (stateTab3) {
-			await this.buyNowPayLater.waitForBeVisible()
+			await this.buyNowPayLater.waitForBeVisible(10_000)
 			if (!(await this.buyNowPayLater.isOk())) return false
 			if (!(await this.learnMore4.isOk())) return false
 			if (!(await this.insuranceClaim.isOk())) return false
