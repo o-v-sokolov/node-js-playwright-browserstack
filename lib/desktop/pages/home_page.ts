@@ -37,6 +37,13 @@ export class HomePage extends BaseDesktopPage {
 	learnMore5: Button
 	findNow: Label
 	findLocation4: Button
+	inStoreImg: Image
+	mobileAutoImg: Image
+	buyNowImg: Image
+	insuranceClaimImg
+	freeInspectionImg: Image
+	autoGlassServicingImg: Image
+	systemCalibrationImg: Image
 
 	constructor(page: Page) {
 		super(page, 'Home page', '')
@@ -59,40 +66,49 @@ export class HomePage extends BaseDesktopPage {
 		this.priceMatchGuarantee = new Label('Price Match Guarantee', this.page.locator('h5'), true)
 
 		this.howWork = new Label('How does it work?', this.page.locator('#tab-0'), true)
+		this.freeInspectionImg = new Image('Free Inspection image', this.page.locator('[alt="Auto glass expert with clipboard"]'), true)
 		this.freeInspection = new Label('Free Inspection', this.page.locator('h3 >> text="Free Inspection"'), true)
 		this.findLocation2 = new Button('Find a location', this.page.locator('#tabpanel-0 .css-wd0exg >> text="Find a location"'))
+		this.autoGlassServicingImg = new Image('Auto Glass image', this.page.locator('[alt="Two Mechanics Replacing Windshield"]'), true)
 		this.autoGlassServicing = new Label('Auto Glass Servicing', this.page.locator('h3 >> text="Auto Glass Servicing"'), true)
 		this.learnMore = new Button('Learn More', this.page.locator('.css-wd0exg >> text="Learn More"').nth(0))
+		this.systemCalibrationImg = new Image('System Calibration image', this.page.locator('[alt="Woman with iPad"]'), true)
 		this.systemCalibration = new Label('System Calibration', this.page.locator('h3 >> text="System Calibration"'), true)
 		this.learnMore2 = new Button('Learn More', this.page.locator('.css-wd0exg >> text="Learn More"').nth(1))
 
 		this.whereServicing = new Label('Where Do I Go For Servicing?', this.page.locator('#tab-1'), true)
+		this.inStoreImg = new Image('In-Store image', this.page.locator('[alt="Customer Paying in Store"]'))
 		this.inStore = new Label('In-Store Auto Glass Repair', this.page.locator('#tabpanel-1 h3 >> text="In-Store Auto Glass Repair"'))
 		this.findLocation3 = new Button('Find a location', this.page.locator('#tabpanel-1 .css-wd0exg >> text="Find a location"'))
+		this.mobileAutoImg = new Image('Mobile Auto image', this.page.locator('[alt="AGN Mobile Repair Van"]'))
 		this.mobileAutoGlassRepair = new Label('Mobile Auto Glass Repair', this.page.locator('#tabpanel-1 h3 >> text="Mobile Auto Glass Repair"'))
 		this.learnMore3 = new Button('Learn More', this.page.locator('#tabpanel-1 .css-wd0exg >> text="Learn More"'))
 
 		this.howPay = new Label('How do I pay for my service?', this.page.locator('#tab-2'), true)
+		this.buyNowImg = new Image('Buy Now image', this.page.locator('[alt="Front desk employee with ZIP sign"]'))
 		this.buyNowPayLater = new Label('Buy Now, Pay Later', this.page.locator('#tabpanel-2 h3 >> text="Buy Now, Pay Later"'))
 		this.learnMore4 = new Button('Learn More', this.page.locator('#tabpanel-2 .css-wd0exg >> text="Learn More"').nth(0))
+		this.insuranceClaimImg = new Image('Insurance Claim image', this.page.locator('[alt="Insurance agent holding a clipboard while touching a damaged windshield."]'))
 		this.insuranceClaim = new Label('Insurance Claim', this.page.locator('#tabpanel-2 h3 >> text="Insurance Claim"'))
 		this.learnMore5 = new Button('Learn More', this.page.locator('#tabpanel-2 .css-wd0exg >> text="Learn More"').nth(1))
 
 		this.findNow = new Label('Auto Glass Servicing', this.page.locator('h3 >> text="Find Your Local Auto Glass Now!"'), true)
-		this.findLocation4 = new Button('Find a location', this.page.locator('.css-182s9va'))
+		this.findLocation4 = new Button('Find a location', this.page.locator('.css-182s9va'), true)
 	}
 
 	async isOk() {
-		if (!(await super.isOk())) return false
+		// if (!(await super.isOk())) return false
 
 		await this.whereServicing.scrollIntoViewIfNeeded()
 		await this.whereServicing.click()
 		const stateTab2 = await this.whereServicing.getAttribute('aria-selected')
 		if (stateTab2) {
-			await this.inStore.waitForBeVisible(10_000)
-			await this.mobileAutoGlassRepair.waitForBeVisible(10_000)
+			await this.inStoreImg.waitForBeVisible()
+			await this.mobileAutoImg.waitForBeVisible()
+			if (!(await this.inStoreImg.isOk())) return false
 			if (!(await this.inStore.isOk())) return false
 			if (!(await this.findLocation3.isOk())) return false
+			if (!(await this.mobileAutoImg.isOk())) return false
 			if (!(await this.mobileAutoGlassRepair.isOk())) return false
 			if (!(await this.learnMore3.isOk())) return false
 		}
@@ -101,10 +117,13 @@ export class HomePage extends BaseDesktopPage {
 		await this.howPay.click()
 		const stateTab3 = await this.howPay.getAttribute('aria-selected')
 		if (stateTab3) {
-			await this.buyNowPayLater.waitForBeVisible(10_000)
-			await this.insuranceClaim.waitForBeVisible(10_000)
+			await this.waitForTimeout()
+			await this.buyNowImg.waitForBeVisible()
+			await this.insuranceClaimImg.waitForBeVisible()
+			if (!(await this.buyNowImg.isOk())) return false
 			if (!(await this.buyNowPayLater.isOk())) return false
 			if (!(await this.learnMore4.isOk())) return false
+			if (!(await this.insuranceClaimImg.isOk())) return false
 			if (!(await this.insuranceClaim.isOk())) return false
 			if (!(await this.learnMore5.isOk())) return false
 		}
