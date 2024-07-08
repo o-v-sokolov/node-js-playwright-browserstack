@@ -3,23 +3,23 @@ accessKey: ZapyGVYg94uXa7mzSY3u
 framework: playwright
 
 platforms:
-  - os: Windows
-    osVersion: 11
-    browserName: chrome
-    browserVersion: latest
-  - os: Windows
-    osVersion: 11
-    browserName: playwright-firefox
-    browserVersion: latest
+  # - os: Windows
+  #   osVersion: 11
+  #   browserName: chrome
+  #   browserVersion: latest
+  # - os: Windows
+  #   osVersion: 11
+  #   browserName: playwright-firefox
+  #   browserVersion: latest
 
-  - os: OS X
-    osVersion: Ventura
-    browserName: playwright-webkit
-    browserVersion: latest
-  - os: OS X
-    osVersion: Monterey
-    browserName: playwright-webkit
-    browserVersion: latest
+  # - os: OS X
+  #   osVersion: Ventura
+  #   browserName: playwright-webkit
+  #   browserVersion: latest
+  # - os: OS X
+  #   osVersion: Monterey
+  #   browserName: playwright-webkit
+  #   browserVersion: latest
   - os: OS X
     osVersion: Big Sur
     browserName: playwright-webkit

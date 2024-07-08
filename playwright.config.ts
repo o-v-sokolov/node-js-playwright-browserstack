@@ -13,7 +13,8 @@ const config = {
 		headless: false,
 		actionTimeout: 60_000,
 		navigationTimeout: 60_000,
-		viewport: { width: 1920, height: 1080 }
+		viewport: { width: 1920, height: 1080 },
+		args: ["--start-maximized"]
 	},
 	expect: {
 		timeout: 40_000,
