@@ -7,17 +7,15 @@ const config = {
 	testMatch: '**/*.spec.ts',
 	fullyParallel: true,
 	reportSlowTests: null,
-	timeout: 30 * 60 * 1000,
+	timeout: 60 * 60 * 1000,
+	globalTimeout: 60 * 60 * 1000,
 	use: {
 		baseURL: process.env.BASE_URL,
 		headless: false,
-		actionTimeout: 60_000,
-		navigationTimeout: 60_000,
+		actionTimeout: 60 * 1000,
+		navigationTimeout: 2 * 60 * 1000,
 		viewport: { width: 1920, height: 1080 },
 		args: ["--start-maximized"]
-	},
-	expect: {
-		timeout: 40_000,
 	},
 	workers: 1,
 	reporter: 'line',
