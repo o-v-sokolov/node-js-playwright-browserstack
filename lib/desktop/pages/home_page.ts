@@ -97,7 +97,7 @@ export class HomePage extends BaseDesktopPage {
 	}
 
 	async isOk() {
-		// if (!(await super.isOk())) return false
+		if (!(await super.isOk())) return false
 
 		await this.whereServicing.scrollIntoViewIfNeeded()
 		await this.whereServicing.click()

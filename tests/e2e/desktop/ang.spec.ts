@@ -10,6 +10,7 @@ test.describe('ANG pages', () => {
 	})
 
 	test('Test home page', async ({}) => {
+		test.slow();
 		await test.step('Go to AboutUs page', async () => {
 			await homePage.open()
 			await expect.soft(homePage, `The integrity of the "${homePage.pageName}" is broken.`).toBeOk()
