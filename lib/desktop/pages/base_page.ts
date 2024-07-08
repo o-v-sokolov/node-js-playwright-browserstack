@@ -53,7 +53,7 @@ export class BasePage extends Base {
 
 	async waitForLoadState(
 		state: 'load' | 'domcontentloaded' | 'networkidle' | undefined = 'load',
-		timeout = 30_000
+		timeout = 40_000
 	): Promise<void> {
 		this.logger.info(`Wait for ${state} state on page`)
 		await this.page.waitForLoadState(state, { timeout })

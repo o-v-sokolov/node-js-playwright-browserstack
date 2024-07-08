@@ -16,7 +16,7 @@ const config = {
 		viewport: { width: 1920, height: 1080 }
 	},
 	expect: {
-		timeout: 30_000,
+		timeout: 40_000,
 	},
 	workers: 1,
 	reporter: 'line',

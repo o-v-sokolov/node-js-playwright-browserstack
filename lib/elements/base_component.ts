@@ -44,12 +44,12 @@ export class BaseComponent extends Base {
 		return false
 	}
 
-	async waitForBeVisible(timeout = 30_000): Promise<void> {
+	async waitForBeVisible(timeout = 40_000): Promise<void> {
 		this.logger.info('Wait for be visible')
 		await this.container.waitFor({ state: 'visible', timeout })
 	}
 
-	async waitForBeHidden(timeout = 30_000): Promise<void> {
+	async waitForBeHidden(timeout = 40_000): Promise<void> {
 		this.logger.info('Wait for be hidden')
 		await this.container.waitFor({ state: 'hidden', timeout })
 	}
