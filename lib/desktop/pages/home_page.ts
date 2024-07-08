@@ -85,6 +85,7 @@ export class HomePage extends BaseDesktopPage {
 	async isOk() {
 		if (!(await super.isOk())) return false
 
+		await this.whereServicing.scrollIntoViewIfNeeded()
 		await this.whereServicing.click()
 		const stateTab2 = await this.whereServicing.getAttribute('aria-selected')
 		if (stateTab2) {
