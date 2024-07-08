@@ -23,6 +23,16 @@ export class Footer extends BaseComponent {
 	covid19: Button
 	contactUs: Button
 	mobileTerms: Button
+	connectWithUs: Label
+	facebook: Label
+	instagram: Label
+	youtube: Label
+	twitter: Label
+	copyRights: Label
+	webAccessibility: Label
+	termsConditions: Label
+	privacyCenter: Label
+	sitemap: Label
 
 	constructor(container: Locator) {
 		super('Footer', container, true)
@@ -49,5 +59,17 @@ export class Footer extends BaseComponent {
 		this.covid19 = new Button('Covid-19 And Your Safety link', this.container.locator('text="Covid-19 And Your Safety"'), true)
 		this.contactUs = new Button('Contact Us link', this.container.locator('text="Contact Us"'), true)
 		this.mobileTerms = new Button('Mobile Terms link', this.container.locator('text="Mobile Terms"'), true)
+
+		this.connectWithUs = new Label('Connect with Us', this.container.locator('text="Connect with Us"'), true)
+		this.facebook = new Label('Connect with Us', this.container.locator('[title="External link to https://www.facebook.com/AutoGlassNowLLC"]'), true)
+		this.instagram = new Label('Connect with Us', this.container.locator('[title="External link to https://www.instagram.com/autoglassnow/"]'), true)
+		this.youtube = new Label('Connect with Us', this.container.locator('[title="External link to https://www.youtube.com/c/AutoGlassNow"]'), true)
+		this.twitter = new Label('Connect with Us', this.container.locator('[title="External link to https://twitter.com/autoglassnow"]'), true)
+
+		this.copyRights = new Label('Auto Glass Now, All Rights Reserved', this.container.locator('.css-wy1hlp'), true)
+		this.webAccessibility = new Label('Web Accessibility', this.container.locator('[title="Link to /web-accessibility/"]'), true)
+		this.termsConditions = new Label('Terms & Conditions', this.container.locator('[title="Link to /terms-of-use/"]'), true)
+		this.privacyCenter = new Label('Privacy Center', this.container.locator('[title="Link to /privacy-policy/"]'), true)
+		this.sitemap = new Label('Sitemap', this.container.locator('[title="Link to /sitemap/"]'), true)
 	}
 }
