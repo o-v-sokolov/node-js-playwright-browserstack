@@ -88,9 +88,8 @@ export class HomePage extends BaseDesktopPage {
 		await this.whereServicing.click()
 		const stateTab2 = await this.whereServicing.getAttribute('aria-selected')
 		if (stateTab2) {
-
-			await this.inStore.waitForBeVisible()
-			await this.waitForTimeout()
+			await this.inStore.waitForBeVisible(10_000)
+			await this.mobileAutoGlassRepair.waitForBeVisible(10_000)
 			if (!(await this.inStore.isOk())) return false
 			if (!(await this.findLocation3.isOk())) return false
 			if (!(await this.mobileAutoGlassRepair.isOk())) return false
@@ -102,6 +101,7 @@ export class HomePage extends BaseDesktopPage {
 		const stateTab3 = await this.howPay.getAttribute('aria-selected')
 		if (stateTab3) {
 			await this.buyNowPayLater.waitForBeVisible(10_000)
+			await this.insuranceClaim.waitForBeVisible(10_000)
 			if (!(await this.buyNowPayLater.isOk())) return false
 			if (!(await this.learnMore4.isOk())) return false
 			if (!(await this.insuranceClaim.isOk())) return false
