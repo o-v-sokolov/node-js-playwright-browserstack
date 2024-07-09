@@ -4,6 +4,8 @@ import { Button } from '@lib//elements/button'
 import { BaseComponent } from '@lib//elements/base_component'
 
 export class Footer extends BaseComponent {
+	findNow: Label
+	findLocation2: Button
 	autoGlassServices: Label
 	autoGlass: Button
 	windshieldRepair: Button
@@ -37,6 +39,8 @@ export class Footer extends BaseComponent {
 	constructor(container: Locator) {
 		super('Footer', container, true)
 
+		this.findNow = new Label('Auto Glass Servicing', this.page.locator('h3 >> text="Find Your Local Auto Glass Now!"'), true)
+		this.findLocation2 = new Button('Find a location', this.page.locator('.css-182s9va'), true)
 		this.autoGlassServices = new Label('Auto Glass Services', this.container.locator('text="Auto Glass Services"'), true)
 		this.autoGlass = new Button('Auto Glass & Calibration link', this.container.locator('text="Auto Glass & Calibration"'), true)
 		this.windshieldRepair = new Button('Windshield Repair link', this.container.locator('text="Windshield Repair"'), true)
