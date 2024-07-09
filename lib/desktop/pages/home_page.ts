@@ -35,8 +35,6 @@ export class HomePage extends BaseDesktopPage {
 	learnMore4: Button
 	insuranceClaim: Label
 	learnMore5: Button
-	findNow: Label
-	findLocation4: Button
 	inStoreImg: Image
 	mobileAutoImg: Image
 	buyNowImg: Image
@@ -91,9 +89,6 @@ export class HomePage extends BaseDesktopPage {
 		this.insuranceClaimImg = new Image('Insurance Claim image', this.page.locator('[alt="Insurance agent holding a clipboard while touching a damaged windshield."]'))
 		this.insuranceClaim = new Label('Insurance Claim', this.page.locator('#tabpanel-2 h3 >> text="Insurance Claim"'))
 		this.learnMore5 = new Button('Learn More', this.page.locator('#tabpanel-2 .css-wd0exg >> text="Learn More"').nth(1))
-
-		this.findNow = new Label('Auto Glass Servicing', this.page.locator('h3 >> text="Find Your Local Auto Glass Now!"'), true)
-		this.findLocation4 = new Button('Find a location', this.page.locator('.css-182s9va'), true)
 	}
 
 	async isOk() {
