@@ -15,7 +15,8 @@ const config = {
 		actionTimeout: 60 * 1000,
 		navigationTimeout: 2 * 60 * 1000,
 		viewport: { width: 1920, height: 1080 },
-		args: ["--start-maximized"]
+		args: ["--start-maximized"],
+		ignoreHTTPSErrors: true,
 	},
 	workers: 1,
 	reporter: 'line',
