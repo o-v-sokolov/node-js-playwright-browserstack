@@ -2,9 +2,6 @@ import { Page } from '@playwright/test'
 import { BaseDesktopPage } from '@lib/desktop/pages/base_desktop_page'
 import { Label } from '@lib/elements/label'
 import { Button } from '@lib/elements/button'
-import { Image } from '@lib/elements/image'
-import { AdditionalAutoGlassServices } from '../components/additional_auto_glass_services'
-
 export class WindshieldReplacement extends BaseDesktopPage {
 	h1: Label
 	description: Label
@@ -19,8 +16,10 @@ export class WindshieldReplacement extends BaseDesktopPage {
 	learnMore: Button
 	learnMore2: Button
 	learnMore3: Button
-	learnMore4: Button
-	additionalAutoGlassServices: AdditionalAutoGlassServices
+	findLocation3: Button
+	windshieldRepair: Button
+	carWindow: Button
+	mobileAutoRepairService: Button
 
 	constructor(page: Page) {
 		super(page, 'Same-Day Car Windshield Replacement', '/auto-glass-services/windshield-replacement/')
@@ -39,7 +38,11 @@ export class WindshieldReplacement extends BaseDesktopPage {
 		this.learnMore2 = new Button('Learn More in Insurance Claims Management', this.page.locator('[title="Link to /insurance-claims-management/"] >> text="Learn More"'), true)
 
 		this.learnMore3 = new Button('Learn More in Calibrating', this.page.locator('[title="Link to /calibration/"] >> text="Learn More"'), true)
-		this.learnMore4 = new Button('Find A Location in New Windshield', this.page.locator('.css-1psf1h8 [title="Link to /our-locations/"] >> text="Find A Location"'), true)
+		this.findLocation3 = new Button('Find A Location in New Windshield', this.page.locator('.css-1psf1h8 [title="Link to /our-locations/"] >> text="Find A Location"'), true)
+
+		this.windshieldRepair = new Button('Windshield Replacement', this.page.locator('.css-1x1a9kx [title="Link to /auto-glass-services/windshield-repair/"] >> text="Windshield Repair"'), true)
+		this.carWindow = new Button('Car Window & Rear Windshield Replacement', this.page.locator('.css-1x1a9kx [title="Link to /auto-glass-services/car-window-rear-windshield-replacement/"] >> text="Car Window & Rear Windshield Replacement"'), true)
+		this.mobileAutoRepairService = new Button('Mobile Auto Repair Service', this.page.locator('.css-1x1a9kx [title="Link to /auto-glass-services/mobile-auto-glass-repair/"] >> text="Mobile Auto Repair Service"'), true)
 	}
 
 	async isOk() {
