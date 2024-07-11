@@ -4,6 +4,8 @@ import { WindshieldRepair } from '@lib/desktop/pages/windshield_repair'
 import { WindshieldReplacement } from '@lib/desktop/pages/windshield_replacement'
 import { CarWindow } from '@lib/desktop/pages/car_window'
 import { MobileAutoGlassRepair } from '@lib/desktop/pages/mobile_auto_glass_repair'
+import { Calibration } from '@lib/desktop/pages/calibration'
+import { BuyNowPayLater } from '@lib/desktop/pages/buy_now'
 
 test.describe('ANG pages', () => {
 	let homePage: HomePage
@@ -11,6 +13,8 @@ test.describe('ANG pages', () => {
 	let windshieldReplacement: WindshieldReplacement
 	let carWindow: CarWindow
 	let mobileAutoGlassRepair: MobileAutoGlassRepair
+	let calibration: Calibration
+	let buyNowPayLater: BuyNowPayLater
 
 	test.beforeEach(async ({ page }) => {
 		homePage = new HomePage(page)
@@ -18,6 +22,8 @@ test.describe('ANG pages', () => {
 		windshieldReplacement = new WindshieldReplacement(page)
 		carWindow = new CarWindow(page)
 		mobileAutoGlassRepair = new MobileAutoGlassRepair(page)
+		calibration = new Calibration(page)
+		buyNowPayLater = new BuyNowPayLater(page)
 	})
 
 	test('Test home page', async ({}) => {
@@ -67,6 +73,26 @@ test.describe('ANG pages', () => {
 		})
 		await test.step('Check "Mobile Auto Glass Repair" page', async () => {
 			await expect.soft(mobileAutoGlassRepair, `The integrity of the "${mobileAutoGlassRepair.pageName}" is broken.`).toBeOk()
+		})
+	})
+
+	test('Test "Calibration" page', async ({}) => {
+		test.slow();
+		await test.step('Go to "Calibration " page', async () => {
+			await calibration .open()
+		})
+		await test.step('Check "Calibration " page', async () => {
+			await expect.soft(calibration, `The integrity of the "${calibration.pageName}" is broken.`).toBeOk()
+		})
+	})
+
+	test('Test "Buy Now, Pay Later" page', async ({}) => {
+		test.slow();
+		await test.step('Go to "Buy Now, Pay Later " page', async () => {
+			await buyNowPayLater .open()
+		})
+		await test.step('Check "Buy Now, Pay Later " page', async () => {
+			await expect.soft(buyNowPayLater, `The integrity of the "${buyNowPayLater.pageName}" is broken.`).toBeOk()
 		})
 	})
 })
