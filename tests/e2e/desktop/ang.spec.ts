@@ -6,6 +6,7 @@ import { CarWindow } from '@lib/desktop/pages/car_window'
 import { MobileAutoGlassRepair } from '@lib/desktop/pages/mobile_auto_glass_repair'
 import { Calibration } from '@lib/desktop/pages/calibration'
 import { BuyNowPayLater } from '@lib/desktop/pages/buy_now'
+import { PaymentOptions } from '@lib/desktop/pages/payment_options'
 
 test.describe('ANG pages', () => {
 	let homePage: HomePage
@@ -15,6 +16,7 @@ test.describe('ANG pages', () => {
 	let mobileAutoGlassRepair: MobileAutoGlassRepair
 	let calibration: Calibration
 	let buyNowPayLater: BuyNowPayLater
+	let paymentOptions: PaymentOptions
 
 	test.beforeEach(async ({ page }) => {
 		homePage = new HomePage(page)
@@ -24,6 +26,7 @@ test.describe('ANG pages', () => {
 		mobileAutoGlassRepair = new MobileAutoGlassRepair(page)
 		calibration = new Calibration(page)
 		buyNowPayLater = new BuyNowPayLater(page)
+		paymentOptions = new PaymentOptions(page)
 	})
 
 	test('Test home page', async ({}) => {
@@ -96,7 +99,7 @@ test.describe('ANG pages', () => {
 		})
 	})
 
-	test.skip('Test "Payment Options" page', async ({}) => {
+	test.only('Test "Payment Options" page', async ({}) => {
 		test.slow();
 		await test.step('Go to "Payment Options" page', async () => {
 			await paymentOptions .open()
