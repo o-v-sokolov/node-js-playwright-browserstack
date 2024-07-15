@@ -7,6 +7,7 @@ import { MobileAutoGlassRepair } from '@lib/desktop/pages/mobile_auto_glass_repa
 import { Calibration } from '@lib/desktop/pages/calibration'
 import { BuyNowPayLater } from '@lib/desktop/pages/buy_now'
 import { PaymentOptions } from '@lib/desktop/pages/payment_options'
+import { InsuranceClaimsManagement } from '@lib/desktop/pages/insurance_claims_management'
 
 test.describe('ANG pages', () => {
 	let homePage: HomePage
@@ -17,6 +18,7 @@ test.describe('ANG pages', () => {
 	let calibration: Calibration
 	let buyNowPayLater: BuyNowPayLater
 	let paymentOptions: PaymentOptions
+	let insuranceClaimsManagement: InsuranceClaimsManagement
 
 	test.beforeEach(async ({ page }) => {
 		homePage = new HomePage(page)
@@ -27,6 +29,7 @@ test.describe('ANG pages', () => {
 		calibration = new Calibration(page)
 		buyNowPayLater = new BuyNowPayLater(page)
 		paymentOptions = new PaymentOptions(page)
+		insuranceClaimsManagement = new InsuranceClaimsManagement(page)
 	})
 
 	test('Test home page', async ({}) => {
@@ -99,13 +102,23 @@ test.describe('ANG pages', () => {
 		})
 	})
 
-	test.only('Test "Payment Options" page', async ({}) => {
+	test('Test "Payment Options" page', async ({}) => {
 		test.slow();
 		await test.step('Go to "Payment Options" page', async () => {
-			await paymentOptions .open()
+			await paymentOptions.open()
 		})
 		await test.step('Check "Payment Options" page', async () => {
 			await expect.soft(paymentOptions, `The integrity of the "${paymentOptions.pageName}" is broken.`).toBeOk()
+		})
+	})
+
+	test.only('Test "Insurance Claims Management" page', async ({}) => {
+		test.slow();
+		await test.step('Go to "Insurance Claims Management" page', async () => {
+			await insuranceClaimsManagement.open()
+		})
+		await test.step('Check "Insurance Claims Management" page', async () => {
+			await expect.soft(insuranceClaimsManagement, `The integrity of the "${insuranceClaimsManagement.pageName}" is broken.`).toBeOk()
 		})
 	})
 })
