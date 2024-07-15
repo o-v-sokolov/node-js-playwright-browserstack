@@ -79,7 +79,7 @@ test.describe('ANG pages', () => {
 	test('Test "Calibration" page', async ({}) => {
 		test.slow();
 		await test.step('Go to "Calibration " page', async () => {
-			await calibration .open()
+			await calibration.open()
 		})
 		await test.step('Check "Calibration " page', async () => {
 			await expect.soft(calibration, `The integrity of the "${calibration.pageName}" is broken.`).toBeOk()
@@ -88,11 +88,21 @@ test.describe('ANG pages', () => {
 
 	test('Test "Buy Now, Pay Later" page', async ({}) => {
 		test.slow();
-		await test.step('Go to "Buy Now, Pay Later " page', async () => {
-			await buyNowPayLater .open()
+		await test.step('Go to "Buy Now, Pay Later" page', async () => {
+			await buyNowPayLater.open()
 		})
-		await test.step('Check "Buy Now, Pay Later " page', async () => {
+		await test.step('Check "Buy Now, Pay Later" page', async () => {
 			await expect.soft(buyNowPayLater, `The integrity of the "${buyNowPayLater.pageName}" is broken.`).toBeOk()
+		})
+	})
+
+	test.skip('Test "Payment Options" page', async ({}) => {
+		test.slow();
+		await test.step('Go to "Payment Options" page', async () => {
+			await paymentOptions .open()
+		})
+		await test.step('Check "Payment Options" page', async () => {
+			await expect.soft(paymentOptions, `The integrity of the "${paymentOptions.pageName}" is broken.`).toBeOk()
 		})
 	})
 })
