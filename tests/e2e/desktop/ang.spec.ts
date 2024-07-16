@@ -8,6 +8,8 @@ import { Calibration } from '@lib/desktop/pages/calibration'
 import { BuyNowPayLater } from '@lib/desktop/pages/buy_now'
 import { PaymentOptions } from '@lib/desktop/pages/payment_options'
 import { InsuranceClaimsManagement } from '@lib/desktop/pages/insurance_claims_management'
+import { AboutUs } from '@lib/desktop/pages/about_us'
+import { Warranty } from '@lib/desktop/pages/warranty'
 
 test.describe('ANG pages', () => {
 	let homePage: HomePage
@@ -19,6 +21,8 @@ test.describe('ANG pages', () => {
 	let buyNowPayLater: BuyNowPayLater
 	let paymentOptions: PaymentOptions
 	let insuranceClaimsManagement: InsuranceClaimsManagement
+	let aboutUs: AboutUs
+	let warranty: Warranty
 
 	test.beforeEach(async ({ page }) => {
 		homePage = new HomePage(page)
@@ -30,6 +34,8 @@ test.describe('ANG pages', () => {
 		buyNowPayLater = new BuyNowPayLater(page)
 		paymentOptions = new PaymentOptions(page)
 		insuranceClaimsManagement = new InsuranceClaimsManagement(page)
+		aboutUs = new AboutUs(page)
+		warranty = new Warranty(page)
 	})
 
 	test('Test home page', async ({}) => {
@@ -112,13 +118,33 @@ test.describe('ANG pages', () => {
 		})
 	})
 
-	test.only('Test "Insurance Claims Management" page', async ({}) => {
+	test('Test "Insurance Claims Management" page', async ({}) => {
 		test.slow();
 		await test.step('Go to "Insurance Claims Management" page', async () => {
 			await insuranceClaimsManagement.open()
 		})
 		await test.step('Check "Insurance Claims Management" page', async () => {
 			await expect.soft(insuranceClaimsManagement, `The integrity of the "${insuranceClaimsManagement.pageName}" is broken.`).toBeOk()
+		})
+	})
+
+	test('Test "About us" page', async ({}) => {
+		test.slow();
+		await test.step('Go to "About us" page', async () => {
+			await aboutUs.open()
+		})
+		await test.step('Check "About us" page', async () => {
+			await expect.soft(aboutUs, `The integrity of the "${aboutUs.pageName}" is broken.`).toBeOk()
+		})
+	})
+
+	test('Test "Warranty" page', async ({}) => {
+		test.slow();
+		await test.step('Go to "Warranty" page', async () => {
+			await warranty.open()
+		})
+		await test.step('Check "Warranty" page', async () => {
+			await expect.soft(warranty, `The integrity of the "${warranty.pageName}" is broken.`).toBeOk()
 		})
 	})
 })
