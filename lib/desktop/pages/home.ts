@@ -4,7 +4,7 @@ import { Label } from '@lib/elements/label'
 import { Button } from '@lib/elements/button'
 import { Image } from '@lib/elements/image'
 
-export class HomePage extends BaseDesktopPage {
+export class Home extends BaseDesktopPage {
 	h1: Label
 	description: Label
 	findLocation: any

@@ -1,7 +1,6 @@
 import { Page } from '@playwright/test'
 import { BaseDesktopPage } from '@lib/desktop/pages/base_desktop_page'
 import { Label } from '@lib/elements/label'
-import { Button } from '@lib/elements/button'
 
 export class AboutUs extends BaseDesktopPage {
 	h1: Label

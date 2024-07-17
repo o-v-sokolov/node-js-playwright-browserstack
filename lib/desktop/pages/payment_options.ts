@@ -2,7 +2,6 @@ import { Page } from '@playwright/test'
 import { BaseDesktopPage } from '@lib/desktop/pages/base_desktop_page'
 import { Label } from '@lib/elements/label'
 import { Button } from '@lib/elements/button'
-import { Image } from '@lib/elements/image'
 
 export class PaymentOptions extends BaseDesktopPage {
 	h1: Label
