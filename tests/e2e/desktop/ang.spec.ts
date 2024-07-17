@@ -1,5 +1,5 @@
 import { test, expect } from '@lib/fixture'
-import { HomePage } from '@lib/desktop/pages/home_page'
+import { Home } from '@lib/desktop/pages/home'
 import { WindshieldRepair } from '@lib/desktop/pages/windshield_repair'
 import { WindshieldReplacement } from '@lib/desktop/pages/windshield_replacement'
 import { CarWindow } from '@lib/desktop/pages/car_window'
@@ -10,9 +10,10 @@ import { PaymentOptions } from '@lib/desktop/pages/payment_options'
 import { InsuranceClaimsManagement } from '@lib/desktop/pages/insurance_claims_management'
 import { AboutUs } from '@lib/desktop/pages/about_us'
 import { Warranty } from '@lib/desktop/pages/warranty'
+import { ContactUs } from '@lib/desktop/pages/contact_us'
 
 test.describe('ANG pages', () => {
-	let homePage: HomePage
+	let home: Home
 	let windshieldRepair: WindshieldRepair
 	let windshieldReplacement: WindshieldReplacement
 	let carWindow: CarWindow
@@ -23,9 +24,10 @@ test.describe('ANG pages', () => {
 	let insuranceClaimsManagement: InsuranceClaimsManagement
 	let aboutUs: AboutUs
 	let warranty: Warranty
+	let contactUs: ContactUs
 
 	test.beforeEach(async ({ page }) => {
-		homePage = new HomePage(page)
+		home = new Home(page)
 		windshieldRepair = new WindshieldRepair(page)
 		windshieldReplacement = new WindshieldReplacement(page)
 		carWindow = new CarWindow(page)
@@ -36,15 +38,16 @@ test.describe('ANG pages', () => {
 		insuranceClaimsManagement = new InsuranceClaimsManagement(page)
 		aboutUs = new AboutUs(page)
 		warranty = new Warranty(page)
+		contactUs = new ContactUs(page)
 	})
 
 	test('Test home page', async ({}) => {
 		test.slow();
 		await test.step('Go to home page', async () => {
-			await homePage.open()
+			await home.open()
 		})
 		await test.step('Check home page', async () => {
-			await expect.soft(homePage, `The integrity of the "${homePage.pageName}" is broken.`).toBeOk()
+			await expect.soft(home, `The integrity of the "${home.pageName}" is broken.`).toBeOk()
 		})
 	})
 
@@ -145,6 +148,56 @@ test.describe('ANG pages', () => {
 		})
 		await test.step('Check "Warranty" page', async () => {
 			await expect.soft(warranty, `The integrity of the "${warranty.pageName}" is broken.`).toBeOk()
+		})
+	})
+
+	test('Test "Contact us" page', async ({}) => {
+		test.slow();
+		await test.step('Go to "Contact us" page', async () => {
+			await contactUs.open()
+		})
+		await test.step('Check "Contact us" page', async () => {
+			await expect.soft(contactUs, `The integrity of the "${contactUs.pageName}" is broken.`).toBeOk()
+		})
+	})
+
+	test('Test hyper links on the "Home" page', async ({ page, context }) => {
+		test.slow();
+		await test.step('Go to "Home" page', async () => {
+			await home.open()
+		})
+		await test.step('Click "Locations" links', async () => {
+			await home.header.locations.clickToNavigate()
+			await expect.soft(page, 'Auto Glass Now® Locations page is not opened').toHaveURL(/our-locations/)
+		})
+		await test.step('Click "Careers" links', async () => {
+			await home.open()
+			const newPage = await context.newPage()
+			await home.header.careers.clickToNavigate()
+			await expect.soft(newPage, 'Careers page is not opened').toHaveURL('https://careers.drivenbrands.com/autoglassnow/us/en/')
+			await newPage.close()
+		})
+		await test.step('Click "Agent Portal" links', async () => {
+			await home.open()
+			const newPage = await context.newPage()
+			await home.header.agentPortal.clickToNavigate()
+			await expect.soft(newPage, 'Agent Portal page is not opened').toHaveURL('https://www.agentclaimsdirect.com/s/')
+			await newPage.close()
+		})
+		await test.step('Click "Get a Quote" button on the top page', async () => {
+			await home.open()
+			await home.header.getQuote.clickToNavigate()
+			await expect.soft(page, 'Get Your Auto Glass Quote Now page is not opened').toHaveURL(/online-estimate/)
+		})
+		await test.step('Click "Find a Location" button', async () => {
+			await home.open()
+			await home.findLocation.clickToNavigate()
+			await expect.soft(page, 'Auto Glass Now® Locations page is not opened').toHaveURL(/our-locations/)
+		})
+		await test.step('Click "Get a Quote" button on the banner area', async () => {
+			await home.open()
+			await home.getQuote.clickToNavigate()
+			await expect.soft(page, 'Auto Glass Now® Locations page is not opened').toHaveURL(/online-estimate/)
 		})
 	})
 })
