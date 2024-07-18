@@ -15,7 +15,7 @@ export class Calibration extends BaseDesktopPage {
 
 
 	constructor(page: Page) {
-		super(page, 'Calibration', '/calibration/')
+		super(page, 'ADAS Windshield Camera Calibration', '/calibration/')
 
 		this.h1 = new Label('H1', this.page.locator('h1'), true)
 		this.description = new Label('Description', this.page.locator('.css-m7lhwd .css-qrxt0m'), true)
