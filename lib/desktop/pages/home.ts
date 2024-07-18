@@ -49,7 +49,7 @@ export class Home extends BaseDesktopPage {
 		this.h1 = new Label('H1', this.page.locator('h1'), true)
 		this.description = new Label('Description', this.page.locator('.css-m7lhwd .css-qrxt0m'), true)
 		this.findLocation = new Button('Find a Location', this.page.locator('.css-m7lhwd .css-e33kag'), true)
-		this.getQuote = new Button('Get a Quote', this.page.locator('.css-m7lhwd .css-e33kag'), true)
+		this.getQuote = new Button('Get a Quote', this.page.locator('[title="Link to /online-estimate/"] .css-wd0exg'), true)
 
 		this.h2 = new Label('H2', this.page.locator('h2'), true)
 		this.img = new Image('Image', this.page.locator('.css-1psf1h8 .css-6sb9m8'), true)
@@ -91,12 +91,46 @@ export class Home extends BaseDesktopPage {
 		this.learnMore5 = new Button('Learn More', this.page.locator('#tabpanel-2 .css-wd0exg >> text="Learn More"').nth(1))
 	}
 
+	async switchTab(tab: number): Promise<boolean> {
+		await this.whereServicing.scrollIntoViewIfNeeded();
+	
+		switch (tab) {
+			case 2:
+				await this.whereServicing.click();
+				break;
+			case 3:
+				await this.howPay.click();
+				break;
+			default:
+				this.logger.warn(`Invalid tab number ${tab}`);
+				return false;
+		}
+	
+		const state = await this.getCurrentTabState(tab);
+		if (!state) {
+			this.logger.warn(`It is impossible to switch to tab ${tab}`);
+			return false;
+		}
+	
+		return true;
+	}
+	
+	private async getCurrentTabState(tab: number): Promise<boolean> {
+		switch (tab) {
+			case 2:
+				return await this.whereServicing.getAttribute('aria-selected') === 'true';
+			case 3:
+				return await this.howPay.getAttribute('aria-selected') === 'true';
+			default:
+				return false;
+		}
+	}
+	
+
 	async isOk() {
 		if (!(await super.isOk())) return false
 
-		await this.whereServicing.scrollIntoViewIfNeeded()
-		await this.whereServicing.click()
-		const stateTab2 = await this.whereServicing.getAttribute('aria-selected')
+		const stateTab2 = await this.switchTab(2)
 		if (stateTab2) {
 			await this.inStoreImg.waitForBeVisible()
 			await this.mobileAutoImg.waitForBeVisible()
@@ -107,10 +141,8 @@ export class Home extends BaseDesktopPage {
 			if (!(await this.mobileAutoGlassRepair.isOk())) return false
 			if (!(await this.learnMore3.isOk())) return false
 		}
-		else this.logger.warn('It is impossible to switch tab')
 
-		await this.howPay.click()
-		const stateTab3 = await this.howPay.getAttribute('aria-selected')
+		const stateTab3 = await this.switchTab(3)
 		if (stateTab3) {
 			await this.waitForTimeout()
 			await this.buyNowImg.waitForBeVisible()
@@ -122,7 +154,6 @@ export class Home extends BaseDesktopPage {
 			if (!(await this.insuranceClaim.isOk())) return false
 			if (!(await this.learnMore5.isOk())) return false
 		}
-		else this.logger.warn('It is impossible to switch tab')
 
 		this.logger.info('Is OK')
 		return true
