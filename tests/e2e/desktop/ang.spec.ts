@@ -42,7 +42,7 @@ test.describe('ANG pages', () => {
 	})
 
 	test('Test home page', async ({}) => {
-		test.slow();
+		test.slow()
 		await test.step('Go to home page', async () => {
 			await home.open()
 		})
@@ -52,7 +52,7 @@ test.describe('ANG pages', () => {
 	})
 
 	test('Test "Windshield Repair" page', async ({}) => {
-		test.slow();
+		test.slow()
 		await test.step('Go to "Windshield Repair" page', async () => {
 			await windshieldRepair.open()
 		})
@@ -62,7 +62,7 @@ test.describe('ANG pages', () => {
 	})
 
 	test('Test "Windshield Replacement" page', async ({}) => {
-		test.slow();
+		test.slow()
 		await test.step('Go to "Windshield Replacement" page', async () => {
 			await windshieldReplacement.open()
 		})
@@ -72,7 +72,7 @@ test.describe('ANG pages', () => {
 	})
 
 	test('Test "Car Window & Rear Windshield Replacement" page', async ({}) => {
-		test.slow();
+		test.slow()
 		await test.step('Go to "Car Window & Rear Windshield Replacement" page', async () => {
 			await carWindow.open()
 		})
@@ -82,7 +82,7 @@ test.describe('ANG pages', () => {
 	})
 
 	test('Test "Mobile Auto Glass Repair" page', async ({}) => {
-		test.slow();
+		test.slow()
 		await test.step('Go to "Mobile Auto Glass Repair" page', async () => {
 			await mobileAutoGlassRepair.open()
 		})
@@ -92,7 +92,7 @@ test.describe('ANG pages', () => {
 	})
 
 	test('Test "Calibration" page', async ({}) => {
-		test.slow();
+		test.slow()
 		await test.step('Go to "Calibration " page', async () => {
 			await calibration.open()
 		})
@@ -102,7 +102,7 @@ test.describe('ANG pages', () => {
 	})
 
 	test('Test "Buy Now, Pay Later" page', async ({}) => {
-		test.slow();
+		test.slow()
 		await test.step('Go to "Buy Now, Pay Later" page', async () => {
 			await buyNowPayLater.open()
 		})
@@ -112,7 +112,7 @@ test.describe('ANG pages', () => {
 	})
 
 	test('Test "Payment Options" page', async ({}) => {
-		test.slow();
+		test.slow()
 		await test.step('Go to "Payment Options" page', async () => {
 			await paymentOptions.open()
 		})
@@ -122,7 +122,7 @@ test.describe('ANG pages', () => {
 	})
 
 	test('Test "Insurance Claims Management" page', async ({}) => {
-		test.slow();
+		test.slow()
 		await test.step('Go to "Insurance Claims Management" page', async () => {
 			await insuranceClaimsManagement.open()
 		})
@@ -132,7 +132,7 @@ test.describe('ANG pages', () => {
 	})
 
 	test('Test "About us" page', async ({}) => {
-		test.slow();
+		test.slow()
 		await test.step('Go to "About us" page', async () => {
 			await aboutUs.open()
 		})
@@ -142,7 +142,7 @@ test.describe('ANG pages', () => {
 	})
 
 	test('Test "Warranty" page', async ({}) => {
-		test.slow();
+		test.slow()
 		await test.step('Go to "Warranty" page', async () => {
 			await warranty.open()
 		})
@@ -152,7 +152,7 @@ test.describe('ANG pages', () => {
 	})
 
 	test('Test "Contact us" page', async ({}) => {
-		test.slow();
+		test.slow()
 		await test.step('Go to "Contact us" page', async () => {
 			await contactUs.open()
 		})
@@ -161,8 +161,9 @@ test.describe('ANG pages', () => {
 		})
 	})
 
-	test('Test hyper links on the "Home" page', async ({ page, context }) => {
-		test.slow();
+	test.only('Test hyper links on the "Home" page', async ({ page, context }) => {
+		test.slow()
+		let newTabPage: any
 		await test.step('Go to "Home" page', async () => {
 			await home.open()
 		})
@@ -170,21 +171,20 @@ test.describe('ANG pages', () => {
 			await home.header.locations.clickToNavigate()
 			await expect.soft(page, '"Auto Glass Now® Locations" page is not opened').toHaveURL(/our-locations/)
 		})
-		// await test.step('Click "Careers" links', async () => {
-		// 	await home.open()
-		// 	const newPage = await context.newPage()
-		// 	await home.header.careers.click()
-		// 	await expect.soft(newPage, '"Careers" page is not opened').toHaveURL('https://careers.drivenbrands.com/autoglassnow/us/en/')
-		// 	await newPage.close()
-			
-		// })
-		// await test.step('Click "Agent Portal" links', async () => {
-		// 	const newPage = await context.newPage()
-		// 	await home.header.agentPortal.click()
-		// 	await page.waitForTimeout(5000)
-		// 	await expect.soft(newPage, '"Agent Portal" page is not opened').toHaveURL('https://www.agentclaimsdirect.com/s/')
-		// 	await newPage.close()
-		// })
+		await test.step('Click "Careers" links', async () => {
+			await home.open()
+			;[newTabPage] = await Promise.all([
+				context.waitForEvent('page'),
+				home.header.careers.click()])
+			expect.soft(newTabPage.url()).toContain('careers.drivenbrands.com/autoglassnow/us/en')
+		})
+		await test.step('Click "Agent Portal" links', async () => {
+			await home.open()
+			;[newTabPage] = await Promise.all([
+				context.waitForEvent('page'),
+				home.header.agentPortal.click()])
+			expect.soft(newTabPage.url(), '"Agent Portal" page is not opened').toContain('www.agentclaimsdirect.com/s')
+		})
 		await test.step('Click "Get a Quote" button on the top page', async () => {
 			await home.open()
 			await home.header.getQuote.clickToNavigate()
