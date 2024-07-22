@@ -5,16 +5,13 @@ import { Button } from '@lib/elements/button'
 
 export class Blog extends BaseDesktopPage {
 	h1: Label
-
-
+	sort: Label
 
 	constructor(page: Page) {
 		super(page, 'Blog', '/blog/')
 
 		this.h1 = new Label('H1', this.page.locator('h1'), true)
 		this.sort = new Label('Sort', this.page.locator('#select-Sort'), true)
-
-		
 	}
 
 	async isOk() {
