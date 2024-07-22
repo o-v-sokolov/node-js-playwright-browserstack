@@ -17,8 +17,8 @@ export class Footer extends BaseComponent {
 	buyNowPayLater: Button
 	fleetCommercial: Button
 	blog: Button
-	careers: Label
-	careersL: Button
+	careersL: Label
+	careers: Button
 	help: Label
 	findLocation: Button
 	noHassleWarranty: Button
@@ -54,8 +54,8 @@ export class Footer extends BaseComponent {
 		this.fleetCommercial = new Button('Fleet & Commercial link', this.container.locator('text="Fleet & Commercial"'), true)
 		this.blog = new Button('Blog link', this.container.locator('text="Blog"'), true)
 
-		this.careers = new Label('Careers', this.container.locator('#Careers-header'), true)
-		this.careersL = new Button('Careers link', this.container.locator('.css-5cdnxl >> text="Careers"'), true)
+		this.careersL = new Label('Careers', this.container.locator('#Careers-header'), true)
+		this.careers = new Button('Careers link', this.container.locator('.css-5cdnxl >> text="Careers"'), true)
 
 		this.help = new Label('Help', this.container.locator('text="Help"'), true)
 		this.findLocation = new Button('Find A Location link', this.container.locator('text="Find A Location"'), true)
